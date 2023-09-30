@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PokeApp</string>
+    <string name="pok_pedia">Poképedia</string>
+
+    <string name="PREFERENCES_POKEMON">PREFERENCES_POKEMON</string>
+
 </resources>
