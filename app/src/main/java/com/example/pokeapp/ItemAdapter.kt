@@ -33,14 +33,14 @@ class ItemAdapter (private val items: MutableList<Pokemon>, val context: Context
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-        val id_pokemon = (starIndex+position+1)
+        val idPokemon = (starIndex+position+1)
         holder.imageView.setImageDrawable(context.getDrawable(R.drawable.placeholder))
-        loadImageFromUrl(APICall.URL_IMAGE + id_pokemon + ".svg", holder.imageView)
+        APICall.loadImageFromUrl(APICall.URL_IMAGE + idPokemon + ".svg", holder.imageView)
         holder.textView.text = item.name
 
         holder.itemView.setOnClickListener(View.OnClickListener {
             val intent = Intent(context, DetailPokeomActivity::class.java)
-            intent.putExtra("id_pokemon", id_pokemon)
+            intent.putExtra("id_pokemon", idPokemon)
             context.startActivity(intent)
 
         })
@@ -54,25 +54,7 @@ class ItemAdapter (private val items: MutableList<Pokemon>, val context: Context
         notifyDataSetChanged()
     }
 
-    private fun loadImageFromUrl(imageUrl: String, imageView: SVGImageView) {
-        Thread {
-            try {
-                val url = URL(imageUrl)
-                val connection = url.openConnection() as HttpURLConnection
-                connection.doInput = true
-                connection.connect()
 
-                val inputStream: InputStream = connection.inputStream
-                val svg = SVG.getFromInputStream(inputStream)
-
-                imageView.post {
-                    imageView.setSVG(svg)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }.start()
-    }
 
     override fun getItemCount(): Int {
         return items.size

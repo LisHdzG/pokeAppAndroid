@@ -36,9 +36,6 @@ class MainActivity : AppCompatActivity() {
         adapter.updateData(pokemonList, startIndex)
     }
 
-    private lateinit var recyclerView_uno: RecyclerView
-    private lateinit var recyclerView_dos: RecyclerView
-    private lateinit var recyclerView_tres: RecyclerView
     private lateinit var textViewNumberPokemons: TextView
 
 
@@ -47,14 +44,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView_uno = findViewById(R.id.recycler_uno)
-        recyclerView_dos = findViewById(R.id.recycler_dos)
-        recyclerView_tres = findViewById(R.id.recycler_tres)
+        val recyclerViewFirstLine: RecyclerView = findViewById(R.id.recycler_uno)
+        val recyclerViewSecondLine: RecyclerView = findViewById(R.id.recycler_dos)
+        val recyclerViewThirdLine: RecyclerView = findViewById(R.id.recycler_tres)
         textViewNumberPokemons = findViewById(R.id.textView)
 
-        recyclerList.add(Recyclers(recyclerView_uno, ItemAdapter( mutableListOf(), this)))
-        recyclerList.add(Recyclers(recyclerView_dos, ItemAdapter( mutableListOf(), this)))
-        recyclerList.add(Recyclers(recyclerView_tres, ItemAdapter( mutableListOf(), this)))
+        recyclerList.add(Recyclers(recyclerViewFirstLine, ItemAdapter( mutableListOf(), this)))
+        recyclerList.add(Recyclers(recyclerViewSecondLine, ItemAdapter( mutableListOf(), this)))
+        recyclerList.add(Recyclers(recyclerViewThirdLine, ItemAdapter( mutableListOf(), this)))
 
         for (recycler in recyclerList){
             recycler.recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
